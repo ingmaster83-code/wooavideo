@@ -138,10 +138,7 @@
     <div id="downloadList"></div>
     <div style="margin-top:16px"><button class="btn-reset" id="resetBtn">다시 자르기</button></div>
   </div>
-  <div class="cross-link-banner">
-    <span>동영상 합치기도 필요하신가요?</span>
-    <a href="video-merge.html">🔗 동영상 합치기 →</a>
-  </div>
+    <div class="wooa-orig-anchor"></div>
 </main>
 <aside class="tool-sidebar">
   <div class="ad-card">
@@ -297,6 +294,7 @@ function renderResult(name,size,url,rangeInfo){
 }
 document.getElementById('resetBtn').addEventListener('click',()=>{selectedFile=null;fileInput.value='';document.getElementById('fileListPanel').style.display='none';document.getElementById('optionsPanel').style.display='none';document.getElementById('resultPanel').style.display='none';document.getElementById('progressWrap').style.display='none';document.getElementById('convertBtn').disabled=true;const vid=document.getElementById('videoPreview');vid.style.display='none';vid.src='';hideError();});
 </script>
+<script src="js/wooahouse-originals-tool.js"></script>
 <script src="js/pwa-install.js"></script>
 </body>
 </html>

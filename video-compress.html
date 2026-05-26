@@ -123,10 +123,7 @@ input[type=range]{width:100%;accent-color:var(--primary);}
     <div id="downloadList"></div>
     <div style="margin-top:16px"><button class="btn-reset" id="resetBtn">다시 압축</button></div>
   </div>
-  <div class="cross-link-banner">
-    <span>동영상 자르기도 필요하신가요?</span>
-    <a href="video-cut.html">✂️ 동영상 자르기 →</a>
-  </div>
+    <div class="wooa-orig-anchor"></div>
   <section style="max-width:800px;margin:3rem auto;padding:0 1rem;">
     <h2 class="faq-title">자주 묻는 질문</h2>
     <div class="faq-item"><div class="faq-q">Q. CRF 값은 무엇인가요?</div><div class="faq-a">CRF(Constant Rate Factor)는 동영상 압축 품질을 조절하는 값입니다. 낮을수록 화질이 좋고 파일이 크며, 높을수록 파일이 작아지지만 화질이 낮아집니다. 18~23은 고화질, 24~28은 표준, 29~35는 저용량입니다.</div></div>
@@ -277,6 +274,7 @@ function renderResult(name,origSize,newSize,url,savings){
 }
 document.getElementById('resetBtn').addEventListener('click',()=>{selectedFile=null;fileInput.value='';document.getElementById('fileListPanel').style.display='none';document.getElementById('resultPanel').style.display='none';document.getElementById('progressWrap').style.display='none';document.getElementById('convertBtn').disabled=true;hideError();});
 </script>
+<script src="js/wooahouse-originals-tool.js"></script>
 <script src="js/pwa-install.js"></script>
 </body>
 </html>
