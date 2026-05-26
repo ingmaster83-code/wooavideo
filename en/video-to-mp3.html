@@ -98,10 +98,7 @@
     <div id="downloadList"></div>
     <div style="margin-top:16px"><button class="btn-reset" id="resetBtn">Extract Another</button></div>
   </div>
-  <div class="cross-link-banner">
-    <span>Need more audio editing tools?</span>
-    <a href="https://wooaaudio.wooahouse.com/" target="_blank" rel="noopener">🎵 WooaAudio – Free Audio Tools →</a>
-  </div>
+    <div class="wooa-orig-anchor"></div>
   <section style="max-width:800px;margin:3rem auto;padding:0 1rem;">
     <h2 class="faq-title">Frequently Asked Questions</h2>
     <div class="faq-item"><div class="faq-q">Q. Which video formats are supported?</div><div class="faq-a">Audio can be extracted from most video formats including MP4, AVI, MOV, WebM, MKV, FLV, and WMV.</div></div>
@@ -218,6 +215,7 @@ function renderResult(name,size,url){
 }
 document.getElementById('resetBtn').addEventListener('click',()=>{selectedFile=null;fileInput.value='';document.getElementById('fileListPanel').style.display='none';document.getElementById('resultPanel').style.display='none';document.getElementById('progressWrap').style.display='none';document.getElementById('convertBtn').disabled=true;hideError();});
 </script>
+<script src="../js/wooahouse-originals-tool-en.js"></script>
 <script src="../js/pwa-install.js"></script>
 </body>
 </html>

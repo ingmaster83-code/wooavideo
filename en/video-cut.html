@@ -111,10 +111,7 @@
     <div id="downloadList"></div>
     <div style="margin-top:16px"><button class="btn-reset" id="resetBtn">Cut Another</button></div>
   </div>
-  <div class="cross-link-banner">
-    <span>Need to merge videos too?</span>
-    <a href="../video-merge.html">🔗 Video Merger →</a>
-  </div>
+    <div class="wooa-orig-anchor"></div>
 </main>
 <aside class="tool-sidebar">
   <div class="ad-card"><ins class="adsbygoogle" style="display:block;width:100%;min-height:250px" data-ad-client="ca-pub-6464921081676309" data-ad-slot="1419180025" data-ad-format="auto" data-full-width-responsive="true"></ins><script>(adsbygoogle=window.adsbygoogle||[]).push({});</script></div>
@@ -232,6 +229,7 @@ function renderResult(name,size,url,rangeInfo){
 }
 document.getElementById('resetBtn').addEventListener('click',()=>{selectedFile=null;fileInput.value='';document.getElementById('fileListPanel').style.display='none';document.getElementById('optionsPanel').style.display='none';document.getElementById('resultPanel').style.display='none';document.getElementById('progressWrap').style.display='none';document.getElementById('convertBtn').disabled=true;const vid=document.getElementById('videoPreview');vid.style.display='none';vid.src='';hideError();});
 </script>
+<script src="../js/wooahouse-originals-tool-en.js"></script>
 <script src="../js/pwa-install.js"></script>
 </body>
 </html>
