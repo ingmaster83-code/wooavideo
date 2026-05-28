@@ -141,6 +141,46 @@
     <xhtml:link rel="alternate" hreflang="en" href="https://wooavideo.wooahouse.com/en/video-thumbnail.html"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://wooavideo.wooahouse.com/video-thumbnail.html"/>
   </url>
+  <url><loc>https://wooavideo.wooahouse.com/video-crop.html</loc><lastmod>2026-05-28</lastmod><changefreq>monthly</changefreq><priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://wooavideo.wooahouse.com/video-crop.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://wooavideo.wooahouse.com/en/video-crop.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://wooavideo.wooahouse.com/video-crop.html"/>
+  </url>
+  <url><loc>https://wooavideo.wooahouse.com/en/video-crop.html</loc><lastmod>2026-05-28</lastmod><changefreq>monthly</changefreq><priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://wooavideo.wooahouse.com/video-crop.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://wooavideo.wooahouse.com/en/video-crop.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://wooavideo.wooahouse.com/video-crop.html"/>
+  </url>
+  <url><loc>https://wooavideo.wooahouse.com/video-watermark.html</loc><lastmod>2026-05-28</lastmod><changefreq>monthly</changefreq><priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://wooavideo.wooahouse.com/video-watermark.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://wooavideo.wooahouse.com/en/video-watermark.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://wooavideo.wooahouse.com/video-watermark.html"/>
+  </url>
+  <url><loc>https://wooavideo.wooahouse.com/en/video-watermark.html</loc><lastmod>2026-05-28</lastmod><changefreq>monthly</changefreq><priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://wooavideo.wooahouse.com/video-watermark.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://wooavideo.wooahouse.com/en/video-watermark.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://wooavideo.wooahouse.com/video-watermark.html"/>
+  </url>
+  <url><loc>https://wooavideo.wooahouse.com/video-add-audio.html</loc><lastmod>2026-05-28</lastmod><changefreq>monthly</changefreq><priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://wooavideo.wooahouse.com/video-add-audio.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://wooavideo.wooahouse.com/en/video-add-audio.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://wooavideo.wooahouse.com/video-add-audio.html"/>
+  </url>
+  <url><loc>https://wooavideo.wooahouse.com/en/video-add-audio.html</loc><lastmod>2026-05-28</lastmod><changefreq>monthly</changefreq><priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://wooavideo.wooahouse.com/video-add-audio.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://wooavideo.wooahouse.com/en/video-add-audio.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://wooavideo.wooahouse.com/video-add-audio.html"/>
+  </url>
+  <url><loc>https://wooavideo.wooahouse.com/mp4-to-gif.html</loc><lastmod>2026-05-28</lastmod><changefreq>monthly</changefreq><priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://wooavideo.wooahouse.com/mp4-to-gif.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://wooavideo.wooahouse.com/en/mp4-to-gif.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://wooavideo.wooahouse.com/mp4-to-gif.html"/>
+  </url>
+  <url><loc>https://wooavideo.wooahouse.com/en/mp4-to-gif.html</loc><lastmod>2026-05-28</lastmod><changefreq>monthly</changefreq><priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://wooavideo.wooahouse.com/mp4-to-gif.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://wooavideo.wooahouse.com/en/mp4-to-gif.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://wooavideo.wooahouse.com/mp4-to-gif.html"/>
+  </url>
   <url><loc>https://wooavideo.wooahouse.com/about.html</loc><lastmod>2026-05-24</lastmod><changefreq>yearly</changefreq><priority>0.4</priority></url>
   <url><loc>https://wooavideo.wooahouse.com/en/about.html</loc><lastmod>2026-05-24</lastmod><changefreq>yearly</changefreq><priority>0.4</priority></url>
   <url><loc>https://wooavideo.wooahouse.com/privacy.html</loc><lastmod>2026-05-24</lastmod><changefreq>yearly</changefreq><priority>0.3</priority></url>
