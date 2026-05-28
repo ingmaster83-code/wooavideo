@@ -1,0 +1,11 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "wooavideo",
+      "runtimeExecutable": "python",
+      "runtimeArgs": ["-m", "http.server", "3201"],
+      "port": 3201
+    }
+  ]
+}
