@@ -212,7 +212,8 @@ function renderResult(name,size,url,count){
   dl.querySelector('.file-item-name').textContent=name;const a=dl.querySelector('a');a.href=url;a.download=name;
   rp.style.display='block';const rAd=document.getElementById('resultAd');if(rAd&&!rAd.dataset.adLoaded){const ins=document.createElement('ins');ins.className='adsbygoogle';ins.style.cssText='display:block';ins.setAttribute('data-ad-client','ca-pub-6464921081676309');ins.setAttribute('data-ad-slot','9432796175');ins.setAttribute('data-ad-format','auto');ins.setAttribute('data-full-width-responsive','true');rAd.appendChild(ins);(window.adsbygoogle=window.adsbygoogle||[]).push({});rAd.dataset.adLoaded='1';}
   rp.scrollIntoView({behavior:'smooth'});
-      // Download button countdown (dot animation)
+          (function(){var w=document.getElementById('resultAdWrap');if(w&&!w.dataset.a){w.dataset.a='1';w.innerHTML='<ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-6464921081676309" data-ad-slot="9432796175" data-ad-format="auto" data-full-width-responsive="true"></ins>';try{(adsbygoogle=window.adsbygoogle||[]).push({});}catch(e){}}})();
+    // Download button countdown (dot animation)
       const dlBtn = document.getElementById('downloadBtn');
       if (dlBtn) {
         const origText = dlBtn.textContent;
