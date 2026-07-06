@@ -58,6 +58,38 @@
 .lang-switcher a:hover{color:white;background:rgba(255,255,255,0.18);}
 .lang-switcher span{color:rgba(255,255,255,0.3);font-size:0.75rem;}
 </style>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Can I add an image or logo watermark?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Currently only text watermarks are supported. Image watermark support is planned for a future update."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can I use non-ASCII characters in the watermark?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "The built-in FFmpeg font does not fully support non-Latin characters. For best results, use ASCII letters, numbers, and symbols like ©, ®, and @."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Are my files uploaded to the internet?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No. All processing happens entirely within your browser — your files are never uploaded to any server. This zero-server architecture keeps your data 100% private, safe for sensitive documents and enterprise security environments."
+      }
+    }
+  ]
+}
+</script>
 </head>
 <body>
 <header>
