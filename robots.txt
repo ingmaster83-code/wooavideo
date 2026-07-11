@@ -2,3 +2,5 @@ User-agent: *
 Allow: /
 
 Sitemap: https://wooavideo.wooahouse.com/sitemap.xml
+
+#DaumWebMasterTool:f0062a2912cba2df8808034c209364bba4bb9e514763b6e9ca32c4ccaa1d3f13:5OHFs/qHHlfCvAas17iLzw==
