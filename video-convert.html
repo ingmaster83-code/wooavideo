@@ -119,9 +119,9 @@
   <div class="drop-zone" id="dropZone">
     <span class="drop-zone-icon">🎬</span>
     <h3>동영상 파일을 여기에 끌어다 놓으세요</h3>
-    <p>MP4, AVI, MOV, WebM, MKV, FLV, WMV 지원 · 최대 500MB 권장</p>
+    <p>MP4, AVI, MOV, WebM, MKV, FLV, WMV 지원 · 여러 파일 가능 · 최대 500MB 권장</p>
     <label for="fileInput" class="btn-select">동영상 파일 선택</label>
-    <input type="file" id="fileInput" accept="video/*,.mp4,.avi,.mov,.webm,.mkv,.flv,.wmv,.m4v,.3gp" style="display:none">
+    <input type="file" id="fileInput" accept="video/*,.mp4,.avi,.mov,.webm,.mkv,.flv,.wmv,.m4v,.3gp" multiple style="display:none">
   </div>
   <div id="fileListPanel" class="file-list-panel" style="display:none">
     <div class="file-list-title">선택된 파일</div>
@@ -177,7 +177,7 @@
   </div>
 </div>
 <div class="wooa-orig-anchor"></div>
-<div class="tips-panel"><h3>💡 Tips</h3><ul><li>MP4(H.264)는 가장 범용적인 동영상 포맷입니다.</li><li>WebM은 웹 스트리밍에 최적화된 포맷입니다.</li><li>출력 품질을 조정해 파일 크기와 화질을 균형있게 설정하세요.</li></ul></div>
+<div class="tips-panel"><h3>💡 Tips</h3><ul><li>MP4(H.264)는 가장 범용적인 동영상 포맷입니다.</li><li>WebM은 웹 스트리밍에 최적화된 포맷입니다.</li><li>출력 품질을 조정해 파일 크기와 화질을 균형있게 설정하세요.</li><li>여러 동영상을 한 번에 선택하면 순서대로 자동 변환됩니다.</li></ul></div>
 <div class="faq-section"><h2>자주 묻는 질문</h2><details><summary>어떤 동영상 포맷을 지원하나요?</summary><p>MP4, AVI, MOV, WebM, MKV, FLV, WMV, M4V, 3GP 등 주요 포맷을 입력으로 지원하며, 출력은 MP4, WebM, AVI, MOV, MKV로 변환할 수 있습니다.</p></details><details><summary>파일이 서버에 저장되나요?</summary><p>아니요. 모든 변환 작업은 브라우저 안에서만 이루어지며, 파일은 외부 서버로 전송되지 않습니다. 개인정보와 민감한 데이터가 외부로 유출될 걱정이 없으며, 기업 보안 환경에서도 안심하고 사용할 수 있습니다.</p></details><details><summary>처음 변환 시 왜 시간이 걸리나요?</summary><p>브라우저에서 직접 동영상을 처리하기 위해 FFmpeg 변환 엔진(약 30MB)을 최초 1회 다운로드합니다. 이후에는 캐시되어 빠르게 실행됩니다.</p></details><details><summary>대용량 파일도 변환할 수 있나요?</summary><p>브라우저에서 처리하므로 파일 크기에 제한은 없지만, 200MB 이상의 파일은 처리 시간이 길어질 수 있습니다. 원활한 사용을 위해 500MB 이하를 권장합니다.</p></details></div>
   
 </main>
@@ -197,7 +197,7 @@ const CDN=['https://cdn.jsdelivr.net/npm','https://unpkg.com'];
 const LOAD_TIMEOUT=60000;
 const MAX_SIZE=500*1024*1024;
 const WARN_SIZE=200*1024*1024;
-let selectedFile=null,ffmpeg=null,engineReady=false,engineLoading=false;
+let selectedFiles=[],ffmpeg=null,engineReady=false,engineLoading=false;
 
 async function fetchFileUtil(f){return new Uint8Array(await f.arrayBuffer());}
 async function toBlobURL(url,mime,onP){
@@ -229,7 +229,7 @@ async function startEngineLoad(){
     updateProgress(100,'엔진 준비 완료!');
     setTimeout(()=>{pw.style.display='none';},800);
     engineReady=true;
-    document.getElementById('convertBtn').disabled=!selectedFile;
+    updateConvertBtnState();
     setBanner('ready','✅ 변환 준비 완료');
     setTimeout(()=>hideBanner(),3000);
   }catch(err){
@@ -238,6 +238,7 @@ async function startEngineLoad(){
     setBanner('error','⚠️ 엔진 로드 실패. 페이지를 새로고침하거나 광고 차단 확장 프로그램을 비활성화 후 다시 시도해주세요.');
   }
 }
+function updateConvertBtnState(){document.getElementById('convertBtn').disabled=!(engineReady&&selectedFiles.length>0);}
 async function loadFFmpegEngine(){
   updateProgress(5,'라이브러리 로드 중...');
   await tryLoadScript(['js/ffmpeg.js'],()=>!!(window.FFmpegWASM));
@@ -260,99 +261,106 @@ const dropZone=document.getElementById('dropZone');
 const fileInput=document.getElementById('fileInput');
 dropZone.addEventListener('dragover',e=>{e.preventDefault();dropZone.classList.add('drag-over');});
 dropZone.addEventListener('dragleave',()=>dropZone.classList.remove('drag-over'));
-dropZone.addEventListener('drop',e=>{e.preventDefault();dropZone.classList.remove('drag-over');if(e.dataTransfer.files[0])setFile(e.dataTransfer.files[0]);});
+dropZone.addEventListener('drop',e=>{e.preventDefault();dropZone.classList.remove('drag-over');if(e.dataTransfer.files.length)addFiles(Array.from(e.dataTransfer.files));});
 dropZone.addEventListener('click',e=>{if(e.target.tagName!=='LABEL')fileInput.click();});
-fileInput.addEventListener('change',e=>{if(e.target.files[0])setFile(e.target.files[0]);});
+fileInput.addEventListener('change',e=>{if(e.target.files.length)addFiles(Array.from(e.target.files));fileInput.value='';});
 
-function setFile(file){
-  if(file.size>MAX_SIZE){showError('파일 크기가 500MB를 초과합니다. 더 작은 파일을 선택해주세요.');return;}
-  selectedFile=file;
-  const list=document.getElementById('fileList');
-  list.innerHTML=`<div class="file-item"><span class="file-item-icon">🎬</span><div class="file-item-info"><div class="file-item-name"></div><div class="file-item-size">${formatSize(file.size)}${file.size>WARN_SIZE?' ⚠️ 대용량 — 처리 시간이 길 수 있습니다':''}</div></div><button type="button" class="file-item-remove">×</button></div>`;
-  list.querySelector('.file-item-name').textContent=file.name;
-  list.querySelector('.file-item-remove').addEventListener('click',()=>{selectedFile=null;document.getElementById('fileListPanel').style.display='none';document.getElementById('convertBtn').disabled=true;hideError();});
-  document.getElementById('fileListPanel').style.display='block';
-  document.getElementById('resultPanel').style.display='none';
+function addFiles(files){
   hideError();
+  for(const file of files){
+    if(file.size>MAX_SIZE){showError(`"${file.name}" 파일 크기가 500MB를 초과해 제외되었습니다.`);continue;}
+    const isDup=selectedFiles.some(s=>s.name===file.name&&s.size===file.size);
+    if(!isDup)selectedFiles.push(file);
+  }
+  renderFileList();
+  document.getElementById('resultPanel').style.display='none';
   ensureEngine();
-  document.getElementById('convertBtn').disabled=!engineReady;
+  updateConvertBtnState();
+}
+
+function renderFileList(){
+  const list=document.getElementById('fileList');
+  document.getElementById('fileListPanel').style.display=selectedFiles.length?'block':'none';
+  list.innerHTML=selectedFiles.map((file,i)=>
+    `<div class="file-item"><span class="file-item-icon">🎬</span><div class="file-item-info"><div class="file-item-name">${file.name}</div><div class="file-item-size">${formatSize(file.size)}${file.size>WARN_SIZE?' ⚠️ 대용량 — 처리 시간이 길 수 있습니다':''}</div></div><button type="button" class="file-item-remove" data-idx="${i}">×</button></div>`
+  ).join('');
+  list.querySelectorAll('.file-item-remove').forEach(btn=>{
+    btn.addEventListener('click',()=>{
+      selectedFiles.splice(parseInt(btn.dataset.idx,10),1);
+      renderFileList();
+      updateConvertBtnState();
+    });
+  });
 }
 
 document.getElementById('convertBtn').addEventListener('click',async()=>{
-  if(!selectedFile||!engineReady)return;
+  if(!selectedFiles.length||!engineReady)return;
   const fmt=document.getElementById('outputFormat').value;
   const crfMap={high:'18',medium:'23',low:'28'};
   const crf=crfMap[document.getElementById('quality').value]||'23';
   document.getElementById('convertBtn').disabled=true;
   hideError();
   document.getElementById('resultPanel').style.display='none';
+  document.getElementById('downloadList').innerHTML='';
   const pw=document.getElementById('progressWrap');
   pw.querySelector('.progress-bar').classList.remove('progress-bar--indeterminate');
   pw.style.display='block';
-  updateProgress(0,'변환 준비 중...');
   const pAd=document.getElementById('processingAd');pAd.style.display='block';
-  try{
-    const ext=(selectedFile.name.split('.').pop()||'mp4').toLowerCase();
-    const inputName=`in_${Date.now()}.${ext}`;
-    const outputName=`out_${Date.now()}.${fmt}`;
-    await ffmpeg.writeFile(inputName,await fetchFileUtil(selectedFile));
-    const args=['-i',inputName];
-    if(fmt==='webm'){
-      args.push('-c:v','libvpx','-b:v','1M','-c:a','libvorbis');
-    }else{
-      args.push('-c:v','libx264','-crf',crf,'-preset','medium','-c:a','aac','-b:a','128k');
-    }
-    if(fmt==='mkv')args.push('-c:v','libx264','-crf',crf,'-c:a','aac');
-    args.push('-y',outputName);
-    await ffmpeg.exec(args);
-    const data=await ffmpeg.readFile(outputName);
-    const blob=new Blob([data.buffer],{type:`video/${fmt}`});
-    const url=URL.createObjectURL(blob);
-    pAd.style.display='none';
-    pw.style.display='none';
-    renderResult(selectedFile.name.replace(/\.[^.]+$/,'')+'.'+fmt,blob.size,url);
-    try{ffmpeg.deleteFile(inputName);ffmpeg.deleteFile(outputName);}catch(e){}
-  }catch(err){
-    pAd.style.display='none';
-    showError('변환에 실패했습니다. 파일 형식을 확인하거나 다시 시도해주세요. ('+err.message+')');
-  }finally{document.getElementById('convertBtn').disabled=false;}
-});
 
-function renderResult(name,size,url){
-  const rp=document.getElementById('resultPanel');
-  document.getElementById('resultSubtitle').textContent='변환 완료 — '+formatSize(size);
-  const dl=document.getElementById('downloadList');
-  dl.innerHTML=`<div class="file-item"><span class="file-item-icon">✅</span><div class="file-item-info"><div class="file-item-name"></div><div class="file-item-size">${formatSize(size)}</div></div><a class="btn-download" id="downloadBtn" style="padding:8px 16px;font-size:0.85rem">다운로드</a></div>`;
-  dl.querySelector('.file-item-name').textContent=name;
-  const a=dl.querySelector('a');a.href=url;a.download=name;
-  rp.style.display='block';
+  let successCount=0;
+  for(let i=0;i<selectedFiles.length;i++){
+    const file=selectedFiles[i];
+    updateProgress(0,`${i+1}/${selectedFiles.length} 변환 준비 중... (${file.name})`);
+    try{
+      const ext=(file.name.split('.').pop()||'mp4').toLowerCase();
+      const inputName=`in_${Date.now()}_${i}.${ext}`;
+      const outputName=`out_${Date.now()}_${i}.${fmt}`;
+      await ffmpeg.writeFile(inputName,await fetchFileUtil(file));
+      const args=['-i',inputName];
+      if(fmt==='webm'){
+        args.push('-c:v','libvpx','-b:v','1M','-c:a','libvorbis');
+      }else{
+        args.push('-c:v','libx264','-crf',crf,'-preset','medium','-c:a','aac','-b:a','128k');
+      }
+      if(fmt==='mkv')args.push('-c:v','libx264','-crf',crf,'-c:a','aac');
+      args.push('-y',outputName);
+      await ffmpeg.exec(args);
+      const data=await ffmpeg.readFile(outputName);
+      const blob=new Blob([data.buffer],{type:`video/${fmt}`});
+      const url=URL.createObjectURL(blob);
+      appendResult(file.name.replace(/\.[^.]+$/,'')+'.'+fmt,blob.size,url);
+      try{ffmpeg.deleteFile(inputName);ffmpeg.deleteFile(outputName);}catch(e){}
+      successCount++;
+    }catch(err){
+      appendResult(file.name,0,null,'변환 실패: '+err.message);
+    }
+  }
+
+  pAd.style.display='none';
+  pw.style.display='none';
+  document.getElementById('resultSubtitle').textContent=`${successCount}/${selectedFiles.length}개 파일 변환 완료`;
+  document.getElementById('resultPanel').style.display='block';
   const rAd=document.getElementById('resultAd');
   if(rAd&&!rAd.dataset.adLoaded){const ins=document.createElement('ins');ins.className='adsbygoogle';ins.style.cssText='display:block';ins.setAttribute('data-ad-client','ca-pub-6464921081676309');ins.setAttribute('data-ad-slot','9432796175');ins.setAttribute('data-ad-format','auto');ins.setAttribute('data-full-width-responsive','true');rAd.appendChild(ins);(window.adsbygoogle=window.adsbygoogle||[]).push({});rAd.dataset.adLoaded='1';}
-  rp.scrollIntoView({behavior:'smooth'});    // 다운로드 버튼 대기 (점 애니메이션)
-      const dlBtn = document.getElementById('downloadBtn');
-      if (dlBtn) {
-        const origText = dlBtn.textContent;
-        const origHref = dlBtn.getAttribute('href');
-        dlBtn.removeAttribute('href');
-        dlBtn.style.pointerEvents = 'none';
-        dlBtn.style.opacity = '0.85';
-        dlBtn.style.cursor = 'not-allowed';
-        const dots = ['⏳ 다운로드 준비중', '⏳ 다운로드 준비중.', '⏳ 다운로드 준비중..', '⏳ 다운로드 준비중...'];
-        let dotIdx = 0;
-        const dotTimer = setInterval(() => { dotIdx = (dotIdx + 1) % dots.length; dlBtn.textContent = dots[dotIdx]; }, 400);
-        setTimeout(() => {
-          clearInterval(dotTimer);
-          dlBtn.textContent = origText;
-          if (origHref) dlBtn.setAttribute('href', origHref);
-          dlBtn.style.pointerEvents = '';
-          dlBtn.style.opacity = '';
-          dlBtn.style.cursor = '';
-        }, 6000);
-      }
+  document.getElementById('resultPanel').scrollIntoView({behavior:'smooth'});
+  document.getElementById('convertBtn').disabled=false;
+});
+
+function appendResult(name,size,url,errorMsg){
+  const dl=document.getElementById('downloadList');
+  const row=document.createElement('div');
+  row.className='file-item';
+  if(errorMsg){
+    row.innerHTML=`<span class="file-item-icon">❌</span><div class="file-item-info"><div class="file-item-name">${name}</div><div class="file-item-size" style="color:#DC2626">${errorMsg}</div></div>`;
+  }else{
+    row.innerHTML=`<span class="file-item-icon">✅</span><div class="file-item-info"><div class="file-item-name">${name}</div><div class="file-item-size">${formatSize(size)}</div></div><a class="btn-download" style="padding:8px 16px;font-size:0.85rem">다운로드</a>`;
+    const a=row.querySelector('a');a.href=url;a.download=name;
+  }
+  dl.appendChild(row);
 }
 
 document.getElementById('resetBtn').addEventListener('click',()=>{
-  selectedFile=null;fileInput.value='';
+  selectedFiles=[];fileInput.value='';
   document.getElementById('fileListPanel').style.display='none';
   document.getElementById('resultPanel').style.display='none';
   document.getElementById('progressWrap').style.display='none';
