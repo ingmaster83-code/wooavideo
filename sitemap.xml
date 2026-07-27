@@ -41,6 +41,16 @@
     <xhtml:link rel="alternate" hreflang="en" href="https://wooavideo.wooahouse.com/en/video-cut.html"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://wooavideo.wooahouse.com/video-cut.html"/>
   </url>
+  <url><loc>https://wooavideo.wooahouse.com/screen-record.html</loc><lastmod>2026-07-27</lastmod><changefreq>monthly</changefreq><priority>0.9</priority>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://wooavideo.wooahouse.com/screen-record.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://wooavideo.wooahouse.com/en/screen-record.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://wooavideo.wooahouse.com/screen-record.html"/>
+  </url>
+  <url><loc>https://wooavideo.wooahouse.com/en/screen-record.html</loc><lastmod>2026-07-27</lastmod><changefreq>monthly</changefreq><priority>0.9</priority>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://wooavideo.wooahouse.com/screen-record.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://wooavideo.wooahouse.com/en/screen-record.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://wooavideo.wooahouse.com/screen-record.html"/>
+  </url>
   <url><loc>https://wooavideo.wooahouse.com/video-to-mp3.html</loc><lastmod>2026-05-24</lastmod><changefreq>monthly</changefreq><priority>0.9</priority>
     <xhtml:link rel="alternate" hreflang="ko" href="https://wooavideo.wooahouse.com/video-to-mp3.html"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://wooavideo.wooahouse.com/en/video-to-mp3.html"/>

@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;600;700&display=swap" rel="stylesheet">
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-9ZGENFSXWC"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-9ZGENFSXWC');</script>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Free Online Screen Recorder – Record Your Screen, No Install | WooaVideo</title>
+<meta name="description" content="Record your screen directly in the browser, no installation required. Choose full screen, window, or tab. Include microphone or system audio. Download as WebM instantly, files never leave your browser.">
+<meta name="keywords" content="screen recorder, free screen recorder, online screen recording, browser screen recorder, record screen no software, screen capture online">
+<link rel="canonical" href="https://wooavideo.wooahouse.com/en/screen-record.html">
+<link rel="alternate" hreflang="ko" href="https://wooavideo.wooahouse.com/screen-record.html">
+<link rel="alternate" hreflang="en" href="https://wooavideo.wooahouse.com/en/screen-record.html">
+<link rel="alternate" hreflang="x-default" href="https://wooavideo.wooahouse.com/screen-record.html">
+<meta property="og:title" content="Free Online Screen Recorder – Record Your Screen, No Install | WooaVideo">
+<meta property="og:description" content="Record your screen directly in the browser, no installation required. Choose full screen, window, or tab.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://wooavideo.wooahouse.com/en/screen-record.html">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://wooavideo.wooahouse.com/og-image.png">
+<meta property="og:site_name" content="WooaVideo">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Free Online Screen Recorder – Record Your Screen, No Install | WooaVideo">
+<meta name="twitter:description" content="Record your screen directly in the browser, no installation required. Choose full screen, window, or tab.">
+<link rel="icon" href="../icons/icon.svg" type="image/svg+xml">
+<link rel="manifest" href="../manifest.json">
+<meta name="theme-color" content="#7C3AED">
+<link rel="stylesheet" href="../css/style.css">
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6464921081676309" crossorigin="anonymous"></script>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebApplication","name":"Screen Recorder","url":"https://wooavideo.wooahouse.com/en/screen-record.html","applicationCategory":"MultimediaApplication","operatingSystem":"Web","inLanguage":"en","isAccessibleForFree":true,"offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}}
+</script>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://wooavideo.wooahouse.com/en/"},{"@type":"ListItem","position":2,"name":"Screen Recorder","item":"https://wooavideo.wooahouse.com/en/screen-record.html"}]}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Do I need to install any software?",
+      "acceptedAnswer": {"@type": "Answer","text": "No. This uses your browser's built-in screen sharing feature, so you can start recording right away with no installation."}
+    },
+    {
+      "@type": "Question",
+      "name": "Can I record microphone audio too?",
+      "acceptedAnswer": {"@type": "Answer","text": "Yes. Check \"Include microphone audio\" to record your voice along with the screen audio."}
+    },
+    {
+      "@type": "Question",
+      "name": "Can I convert the downloaded WebM file to MP4?",
+      "acceptedAnswer": {"@type": "Answer","text": "Yes. Upload the WebM file to our Video Converter tool to convert it to MP4."}
+    }
+  ]
+}
+</script>
+<style>
+.rec-container{max-width:720px;margin:0 auto;}
+#recPreview{width:100%;border-radius:var(--radius);margin-bottom:16px;background:#000;display:none;max-height:400px;object-fit:contain;}
+.rec-timer{text-align:center;font-size:2.5rem;font-weight:700;color:#7C3AED;letter-spacing:2px;margin:12px 0;font-variant-numeric:tabular-nums;}
+.rec-status{text-align:center;font-size:.9rem;color:#6b7280;margin-bottom:16px;min-height:1.4em;}
+.rec-status.recording{color:#ef4444;font-weight:600;}
+.recording-dot{display:inline-block;width:10px;height:10px;background:#ef4444;border-radius:50%;animation:blink 1s infinite;margin-right:4px;}
+@keyframes blink{0%,100%{opacity:1;}50%{opacity:0;}}
+.rec-opts{display:flex;gap:20px;justify-content:center;flex-wrap:wrap;margin:16px 0;font-size:.88rem;color:var(--text);}
+.rec-opts label{display:flex;align-items:center;gap:6px;cursor:pointer;}
+.rec-controls{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin:20px 0;}
+.btn-record{padding:14px 32px;border:none;border-radius:50px;font-size:1rem;font-weight:600;cursor:pointer;transition:all .2s;display:flex;align-items:center;gap:8px;}
+.btn-record-start{background:#7C3AED;color:#fff;}
+.btn-record-start:hover:not(:disabled){background:#6D28D9;}
+.btn-record-stop{background:#ef4444;color:#fff;}
+.btn-record-stop:hover:not(:disabled){background:#dc2626;}
+.btn-record:disabled{opacity:.4;cursor:not-allowed;}
+.rec-error{background:#fef2f2;border:1.5px solid #fecaca;border-radius:10px;padding:16px 20px;color:#991b1b;margin:16px 0;display:none;}
+.lang-switcher{display:flex;align-items:center;gap:4px;}
+.lang-switcher a{color:rgba(255,255,255,0.7);text-decoration:none;font-size:0.8rem;font-weight:600;padding:3px 8px;border-radius:12px;transition:background 0.15s;}
+.lang-switcher a.active{color:white;background:rgba(255,255,255,0.25);}
+.lang-switcher a:hover{color:white;background:rgba(255,255,255,0.18);}
+.lang-switcher span{color:rgba(255,255,255,0.3);font-size:0.75rem;}
+</style>
+</head>
+<body>
+<header>
+  <div class="header-inner">
+    <a href="../index.html" class="logo">WooaVideo</a>
+    <nav>
+      <a href="video-compress.html">Compress</a>
+      <a href="video-convert.html">Convert</a>
+      <a href="video-cut.html">Trim</a>
+      <a href="screen-record.html">Screen Record</a>
+      <a href="../index.html">All Tools ›</a>
+    </nav>
+    <div class="header-right"><div class="lang-switcher"><a href="../screen-record.html">KO</a><span>|</span><a href="screen-record.html" class="active">EN</a></div><a href="about.html" style="color:rgba(255,255,255,0.85);font-size:0.85rem;text-decoration:none;margin-left:8px;">About</a></div>
+  </div>
+</header>
+<script src="../js/wooa-sites-bar.js"></script>
+<div class="mobile-top-ad">
+  <ins class="adsbygoogle" style="display:block;width:100%;height:80px" data-ad-client="ca-pub-6464921081676309" data-ad-slot="7080296704" data-ad-format="auto" data-full-width-responsive="true"></ins>
+  <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+</div>
+<div class="page-with-sidebar">
+<main class="tool-page">
+  <div class="breadcrumb"><a href="../index.html">Home</a><span>›</span><span>Screen Recorder</span></div>
+  <div class="tool-header">
+    <span class="tool-header-icon">🖥️</span>
+    <h1>Screen Recorder – Free Online</h1>
+    <p>Record your screen directly in the browser, no installation required. Choose full screen, a window, or a browser tab.</p>
+  </div>
+
+  <div class="rec-container">
+    <div id="recError" class="rec-error">
+      <strong>Screen sharing was cancelled or denied.</strong><br>
+      Click Start Recording again and choose the screen, window, or tab to record.
+    </div>
+
+    <video id="recPreview" autoplay muted></video>
+
+    <div class="rec-timer" id="timer">00:00</div>
+    <div class="rec-status" id="statusText">Click Start Recording to choose which screen to record.</div>
+
+    <div class="rec-opts">
+      <label><input type="checkbox" id="includeMic"> 🎙️ Include microphone audio</label>
+      <label><input type="checkbox" id="includeSystemAudio" checked> 🔊 Include screen (system/tab) audio</label>
+    </div>
+
+    <div class="rec-controls">
+      <button class="btn-record btn-record-start" id="startBtn">⏺️ Start Recording</button>
+      <button class="btn-record btn-record-stop" id="stopBtn" disabled>⏹️ Stop Recording</button>
+    </div>
+
+    <div class="result-panel" id="resultPanel" style="display:none">
+      <div class="result-header"><span class="result-icon">✅</span><div><div class="result-title">Recording complete!</div><div class="result-subtitle" id="resultSubtitle"></div></div></div>
+      <video id="playbackVideo" controls style="width:100%;border-radius:var(--radius-sm);margin:12px 0;background:#000;max-height:400px;"></video>
+      <div class="download-share-group">
+        <a class="btn-download" id="downloadBtn" download="screen-recording.webm">⬇️ Download WebM</a>
+        <button class="btn-share" id="resetBtn">🔄 Record Again</button>
+      </div>
+      <div id="resultAd" style="text-align:center;margin:16px auto;max-width:728px;padding:0 8px"></div>
+    </div>
+  </div>
+
+  <div class="related-tools">
+  <h2>Related Tools</h2>
+  <div class="related-grid">
+    <a href="video-convert.html" class="related-card"><span class="related-icon">🔄</span><span>Video Converter (WebM→MP4)</span></a>
+    <a href="video-cut.html" class="related-card"><span class="related-icon">✂️</span><span>Trim Video</span></a>
+    <a href="video-compress.html" class="related-card"><span class="related-icon">🗜️</span><span>Compress Video</span></a>
+    <a href="video-to-mp3.html" class="related-card"><span class="related-icon">🎵</span><span>Video to MP3</span></a>
+  </div>
+</div>
+<div class="wooa-orig-anchor"></div>
+<div class="tips-panel"><h3>💡 Tips</h3><ul><li>Choose "Tab" in the share picker to also record the audio of that browser tab.</li><li>Check "Include microphone audio" if your recording needs narration.</li><li>Use the Video Converter tool to turn your WebM file into MP4.</li></ul></div>
+<section class="faq-section" style="max-width:800px;margin:3rem auto;padding:0 1rem;">
+    <h2 style="font-size:1.4rem;margin-bottom:1.5rem;">Frequently Asked Questions</h2>
+    <div class="faq-list">
+      <div class="faq-item" style="margin-bottom:1.2rem;padding:1rem;background:#f8f9fa;border-radius:8px;">
+        <h3 style="font-size:1rem;font-weight:600;margin-bottom:0.5rem;">Q. Do I need to install any software?</h3>
+        <p style="color:#555;margin:0;">No. This uses your browser's built-in screen sharing feature, so you can start recording right away with no installation.</p>
+      </div>
+      <div class="faq-item" style="margin-bottom:1.2rem;padding:1rem;background:#f8f9fa;border-radius:8px;">
+        <h3 style="font-size:1rem;font-weight:600;margin-bottom:0.5rem;">Q. Can I record microphone audio too?</h3>
+        <p style="color:#555;margin:0;">Yes. Check "Include microphone audio" to record your voice along with the screen audio.</p>
+      </div>
+      <div class="faq-item" style="padding:1rem;background:#f8f9fa;border-radius:8px;">
+        <h3 style="font-size:1rem;font-weight:600;margin-bottom:0.5rem;">Q. Can I convert the downloaded WebM file to MP4?</h3>
+        <p style="color:#555;margin:0;">Yes. Upload the WebM file to our Video Converter tool to convert it to MP4.</p>
+      </div>
+    </div>
+  </section>
+</main>
+<aside class="tool-sidebar"></aside>
+</div>
+<div class="features" style="margin-top:60px">
+  <div class="features-inner">
+    <div><div class="feature-icon">🔒</div><div class="feature-title">100% Safe</div><div class="feature-desc">Files are never uploaded to a server.</div></div>
+    <div><div class="feature-icon">🚀</div><div class="feature-title">No Install</div><div class="feature-desc">Start recording right from your browser.</div></div>
+    <div><div class="feature-icon">💸</div><div class="feature-title">Completely Free</div><div class="feature-desc">No sign-up required.</div></div>
+    <div><div class="feature-icon">🎙️</div><div class="feature-title">Mic & System Audio</div><div class="feature-desc">Choose the audio sources you need.</div></div>
+  </div>
+</div>
+<footer class="footer"></footer>
+<script>
+(function() {
+  const startBtn = document.getElementById('startBtn');
+  const stopBtn = document.getElementById('stopBtn');
+  const timerEl = document.getElementById('timer');
+  const statusEl = document.getElementById('statusText');
+  const recError = document.getElementById('recError');
+  const recPreview = document.getElementById('recPreview');
+  const resultPanel = document.getElementById('resultPanel');
+  const playbackVideo = document.getElementById('playbackVideo');
+  const downloadBtn = document.getElementById('downloadBtn');
+  const resetBtn = document.getElementById('resetBtn');
+  const resultSubtitle = document.getElementById('resultSubtitle');
+
+  let mediaRecorder = null;
+  let recordedChunks = [];
+  let timerInterval = null;
+  let seconds = 0;
+  let displayStream = null;
+  let micStream = null;
+  let audioCtx = null;
+  let recordedBlob = null;
+
+  function formatTime(s) {
+    const m = Math.floor(s / 60);
+    const sec = s % 60;
+    return String(m).padStart(2,'0') + ':' + String(sec).padStart(2,'0');
+  }
+
+  function pickMimeType() {
+    const candidates = ['video/webm;codecs=vp9,opus', 'video/webm;codecs=vp8,opus', 'video/webm'];
+    for (const c of candidates) { if (MediaRecorder.isTypeSupported(c)) return c; }
+    return '';
+  }
+
+  function stopAllTracks() {
+    if (displayStream) displayStream.getTracks().forEach(t => t.stop());
+    if (micStream) micStream.getTracks().forEach(t => t.stop());
+    if (audioCtx) { audioCtx.close(); audioCtx = null; }
+    displayStream = null; micStream = null;
+  }
+
+  startBtn.addEventListener('click', async () => {
+    recError.style.display = 'none';
+    resultPanel.style.display = 'none';
+    recordedChunks = [];
+
+    const wantSystemAudio = document.getElementById('includeSystemAudio').checked;
+    const wantMic = document.getElementById('includeMic').checked;
+
+    try {
+      displayStream = await navigator.mediaDevices.getDisplayMedia({ video: true, audio: wantSystemAudio });
+    } catch (e) {
+      recError.style.display = 'block';
+      statusEl.textContent = 'Screen sharing permission is required.';
+      return;
+    }
+
+    let combinedStream = displayStream;
+
+    if (wantMic) {
+      try {
+        micStream = await navigator.mediaDevices.getUserMedia({ audio: true });
+        audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+        const dest = audioCtx.createMediaStreamDestination();
+        const screenAudioTracks = displayStream.getAudioTracks();
+        if (screenAudioTracks.length) {
+          audioCtx.createMediaStreamSource(new MediaStream(screenAudioTracks)).connect(dest);
+        }
+        audioCtx.createMediaStreamSource(micStream).connect(dest);
+        combinedStream = new MediaStream([...displayStream.getVideoTracks(), ...dest.stream.getAudioTracks()]);
+      } catch (e) {
+        // Continue with screen audio only if mic permission is denied
+      }
+    }
+
+    recPreview.srcObject = displayStream;
+    recPreview.style.display = 'block';
+
+    const mimeType = pickMimeType();
+    const options = mimeType ? { mimeType } : {};
+    mediaRecorder = new MediaRecorder(combinedStream, options);
+    mediaRecorder.ondataavailable = e => { if (e.data.size > 0) recordedChunks.push(e.data); };
+    mediaRecorder.onstop = () => {
+      recordedBlob = new Blob(recordedChunks, { type: mediaRecorder.mimeType || 'video/webm' });
+      const url = URL.createObjectURL(recordedBlob);
+      playbackVideo.src = url;
+      downloadBtn.href = url;
+      const stamp = new Date().toISOString().slice(0,19).replace(/[:T]/g, '-');
+      downloadBtn.download = 'screen-recording_' + stamp + '.webm';
+      resultSubtitle.textContent = formatTime(seconds) + ' · ' + formatSize(recordedBlob.size);
+      resultPanel.style.display = 'block';
+      recPreview.style.display = 'none';
+      resultPanel.scrollIntoView({ behavior: 'smooth' });
+
+      const resultAd = document.getElementById('resultAd');
+      if (resultAd && !resultAd.dataset.adLoaded) {
+        const ins = document.createElement('ins');
+        ins.className = 'adsbygoogle';
+        ins.style.cssText = 'display:block';
+        ins.setAttribute('data-ad-client', 'ca-pub-6464921081676309');
+        ins.setAttribute('data-ad-slot', '7080296704');
+        ins.setAttribute('data-ad-format', 'auto');
+        ins.setAttribute('data-full-width-responsive', 'true');
+        resultAd.appendChild(ins);
+        (window.adsbygoogle = window.adsbygoogle || []).push({});
+        resultAd.dataset.adLoaded = '1';
+      }
+    };
+
+    displayStream.getVideoTracks()[0].addEventListener('ended', () => {
+      if (mediaRecorder && mediaRecorder.state !== 'inactive') stopRecording();
+    });
+
+    mediaRecorder.start(1000);
+    seconds = 0;
+    timerEl.textContent = '00:00';
+    timerInterval = setInterval(() => { seconds++; timerEl.textContent = formatTime(seconds); }, 1000);
+
+    startBtn.disabled = true;
+    stopBtn.disabled = false;
+    statusEl.innerHTML = '<span class="recording-dot"></span>Recording...';
+    statusEl.className = 'rec-status recording';
+  });
+
+  function stopRecording() {
+    if (mediaRecorder && mediaRecorder.state !== 'inactive') mediaRecorder.stop();
+    stopAllTracks();
+    clearInterval(timerInterval);
+    startBtn.disabled = false;
+    stopBtn.disabled = true;
+    statusEl.textContent = 'Recording complete. Play or download it below.';
+    statusEl.className = 'rec-status';
+  }
+  stopBtn.addEventListener('click', stopRecording);
+
+  resetBtn.addEventListener('click', () => {
+    resultPanel.style.display = 'none';
+    seconds = 0;
+    timerEl.textContent = '00:00';
+    statusEl.textContent = 'Click Start Recording to choose which screen to record.';
+    statusEl.className = 'rec-status';
+    playbackVideo.src = '';
+    downloadBtn.href = '';
+    recordedBlob = null;
+  });
+
+  function formatSize(b) {
+    if (b < 1024) return b + ' B';
+    if (b < 1024*1024) return (b/1024).toFixed(1) + ' KB';
+    return (b/(1024*1024)).toFixed(1) + ' MB';
+  }
+})();
+</script>
+<script src="../js/wooahouse-originals-tool-en.js"></script>
+<script src="../js/pwa-install.js"></script>
+<script src="../js/wooa-sidebar-en.js"></script>
+<script src="../js/wooa-footer-en.js"></script>
+</body>
+</html>
